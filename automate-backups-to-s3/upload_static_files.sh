@@ -2,7 +2,13 @@
 
 set -e
 
-# TODO check if there are any folder to upload
+FOLDER_LOCATION="/backups/static-files"
+
+# check if there are any folder to upload
+if [ -z "$(ls -A $FOLDER_LOCATION)" ]; then
+    echo "static folder is empty"
+    exit
+fi
 
 # set default values
 [ -z $STATIC_FILES_BACKUP_S3_FOLDER ] && STATIC_FILES_BACKUP_S3_FOLDER=static-files
@@ -12,8 +18,6 @@ set -e
     && echo "ERROR: S3 variables are required" && exit 2
 
 echo "upload static files"
-
-FOLDER_LOCATION="/backups/static-files"
 
 for FOLDER in $(ls $FOLDER_LOCATION); do
     echo "upload folder: $FOLDER"
