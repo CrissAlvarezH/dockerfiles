@@ -1,6 +1,8 @@
 FROM alpine:3.15
 
-# TODO install pg_dump
-# TODO install aws cli
+# Install packages
+RUN apk update
+RUN apk add postgresql-client
+RUN apk add aws-cli
+RUN apk add gzip
 
-# TODO execute main script
