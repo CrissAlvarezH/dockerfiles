@@ -42,3 +42,6 @@ IFS="$OIFS"
 unset OIFS
 
 echo "postgres backup finish"
+echo ""
+echo "---------------------------------------"
+echo ""

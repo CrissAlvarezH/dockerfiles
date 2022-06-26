@@ -33,3 +33,6 @@ for FOLDER in $(ls $FOLDER_LOCATION); do
 done
 
 echo "backup static file finish"
+echo ""
+echo "---------------------------------------"
+echo ""
