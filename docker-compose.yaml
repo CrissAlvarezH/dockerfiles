@@ -15,4 +15,3 @@ services:
       - automate-backups-to-s3/.env
     volumes:
       - ./mock:/backups/static-files
-      - ./logs:/logs

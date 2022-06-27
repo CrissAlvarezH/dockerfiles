@@ -2,6 +2,12 @@
 
 set -e
 
+echo ""
+echo "========================================="
+echo "           PG BACKUP INIT"
+echo "-----------------------------------------"
+echo ""
+
 # set default variables
 [ -z $POSTGRES_PORT ] && POSTGRES_PORT=5432
 [ -z $BACKUP_WITH_TIMESTAMP ] && BACKUP_WITH_TIMESTAMP=true
@@ -21,10 +27,10 @@ OIF="$IFS" # save original IFS (internal file separator) value to restore later
 IFS="," # set as , to split $DATABASE_NAMES
 
 for DATABASE in $DATABASE_NAMES; do
-    echo "create postgres backup for $DATABASE"
+    echo "- Create backup for '$DATABASE'"
     pg_dump -h $POSTGRES_HOST -p $POSTGRES_PORT -U $POSTGRES_USER $DATABASE | gzip > dump.sql.zip
 
-    echo "upload postgres backup to s3"
+    echo "- Upload '$DATABASE' backup to s3"
 
     if [ $BACKUP_WITH_TIMESTAMP == "true" ]; then
         S3_DESTINY="s3://${S3_BUCKET}/${PG_BACKUP_S3_FOLDER}/$DATABASE-$(date +"%Y-%m-%dT%H:%M:%SZ").sql.zip"
@@ -35,13 +41,15 @@ for DATABASE in $DATABASE_NAMES; do
     aws s3 cp ./dump.sql.zip "$S3_DESTINY"
 
     rm -rf dump.sql.zip  # delete backup file
+
+    echo ""
 done
 
 # Restore origin IFS an unset temporal varaible
 IFS="$OIFS"
 unset OIFS
 
-echo "postgres backup finish"
-echo ""
-echo "---------------------------------------"
+echo "-----------------------------------------"
+echo "           PG BACKUP FINISH"
+echo "========================================="
 echo ""
