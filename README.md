@@ -22,7 +22,7 @@ Automatiza la creación de backups de base de datos y de carpetas para enviarlos
 	        environment:
 	            POSTGRES_HOST: database
 	            POSTGRES_USER: root
-                    POSTGRES_PASSWORD: 12345
+	            POSTGRES_PASSWORD: 12345
 	            POSTGRES_PORT: 5432
 
 	            DATABASE_NAMES: dbname
