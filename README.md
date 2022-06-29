@@ -18,7 +18,7 @@ Automatiza la creación de backups de base de datos y de carpetas para enviarlos
 	            POSTGRES_DB: dbname
 
 	    automate-backups-to-s3:
-	        build: crissalvarezh/automate-backups-to-s3:0.1
+	        image: crissalvarezh/automate-backups-to-s3:0.1
 	        environment:
 	            POSTGRES_HOST: database
 	            POSTGRES_USER: root
