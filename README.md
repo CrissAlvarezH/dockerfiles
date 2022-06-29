@@ -45,3 +45,41 @@ Los backups de las bases de datos tendrán el nombre de la base de datos, en cas
 Ej: `ubicor-2022-04-03T10:05:02.sql.zip`  y `ubicor.sql.zip` con y sin timestamp.
 
 El proceso de backup será automatizado según el `CRON_EXPRESSION`, ej: `30 10 * * *` creará los backups a las `10:30 am` todos los dias, para crear tus expresiones cron puedes usar [crontab.guru](https://crontab.guru/)
+
+**Los logs producidos por el proceso lucen de la siguiente manera:**
+
+	| 2022-06-29 04:00:00: =========================================
+	| 2022-06-29 04:00:00:            PG BACKUP INIT
+	| 2022-06-29 04:00:00: -----------------------------------------
+	| 2022-06-29 04:00:00:
+	| 2022-06-29 04:00:00: - Create backup for 'ubicor'
+	| pg_dump: error: connection to server at "database", port 5432 failed: FATAL:  database "ubicor" does not exist
+	| 2022-06-29 04:00:00: - Upload 'ubicor' backup to s3
+	| 2022-06-29 04:00:00: - Uploaded file: s3://projects-backup-files/databases/ubicor.sql.zip
+	| 2022-06-29 04:00:00: 
+	| 2022-06-29 04:00:00: - Create backup for 'postgres'
+	| 2022-06-29 04:00:00: - Upload 'postgres' backup to s3
+	| 2022-06-29 04:00:01: - Uploaded file: s3://projects-backup-files/databases/postgres.sql.zip
+	| 2022-06-29 04:00:01: 
+	| 2022-06-29 04:00:01: -----------------------------------------
+	| 2022-06-29 04:00:01:            PG BACKUP FINISH
+	| 2022-06-29 04:00:01: =========================================
+	| 2022-06-29 04:00:01:
+	| 2022-06-29 04:00:01:
+	| 2022-06-29 04:00:01: =========================================
+	| 2022-06-29 04:00:01:            FILES BACKUP INIT
+	| 2022-06-29 04:00:01: -----------------------------------------
+	| 2022-06-29 04:00:01:
+	| 2022-06-29 04:00:01: - Upload folder: 'f.zip'
+	| 2022-06-29 04:00:02: - Uploaded file: s3://projects-backup-files/static-files/f.zip.zip
+	| 2022-06-29 04:00:02: 
+	| 2022-06-29 04:00:02: - Upload folder: 'folder1'
+	| 2022-06-29 04:00:03: - Uploaded file: s3://projects-backup-files/static-files/folder1.zip
+	| 2022-06-29 04:00:03: 
+	| 2022-06-29 04:00:03: - Upload folder: 'folder2'
+	| 2022-06-29 04:00:04: - Uploaded file: s3://projects-backup-files/static-files/folder2.zip
+	| 2022-06-29 04:00:04: 
+	| 2022-06-29 04:00:04: -----------------------------------------
+	| 2022-06-29 04:00:04:            FILES BACKUP FINISH
+	| 2022-06-29 04:00:04: =========================================
+	| 2022-06-29 04:00:04:
