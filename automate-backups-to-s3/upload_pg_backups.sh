@@ -42,6 +42,8 @@ for DATABASE in $DATABASE_NAMES; do
         S3_DESTINY="s3://${S3_BUCKET}/${PG_BACKUP_S3_FOLDER}/$DATABASE.sql.zip"
     fi
 
+    log "- To upload file: $S3_DESTINY"
+
     aws s3 cp --quiet ./dump.sql.zip "$S3_DESTINY"
 
     log "- Uploaded file: $S3_DESTINY"
