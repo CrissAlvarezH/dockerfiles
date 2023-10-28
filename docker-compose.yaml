@@ -11,7 +11,9 @@ services:
     
   automate-backups-to-s3:
     build: automate-backups-to-s3
-    env_file: 
-      - automate-backups-to-s3/.env
-    volumes:
-      - ./mock:/backups/static-files
+    image: crissalvarezh/automate-backups-to-s3
+
+  nginx-gunicorn-proxy:
+    build: nginx-gunicorn-proxy
+    image: crissalvarezh/nginx-gunicorn-proxy
+
