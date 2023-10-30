@@ -1,4 +1,4 @@
-FROM nginxinc/nginx-unprivileged:1-alpine
+FROM --platform=linux/amd64 nginxinc/nginx-unprivileged:1-alpine
 
 COPY ./nginx.template.conf /etc/nginx/nginx.template.conf
 COPY ./run.sh /run.sh
