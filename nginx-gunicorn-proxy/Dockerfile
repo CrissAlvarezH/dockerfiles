@@ -18,10 +18,9 @@ RUN touch /run/nginx.pid && \
 
 RUN chmod +x /run.sh
 
+# volume for static files
 VOLUME /vol/static
 
 USER nginx
-
-EXPOSE $LISTEN_PORT
 
 CMD ["/run.sh"]

@@ -16,4 +16,8 @@ services:
   nginx-gunicorn-proxy:
     build: nginx-gunicorn-proxy
     image: crissalvarezh/nginx-gunicorn-proxy
-
+    environment:
+      LISTEN_PORT: "8000"
+      APP_NAME: "api"
+      APP_PORT: "8080"
+      STATIC_ROOT: "/vol"
